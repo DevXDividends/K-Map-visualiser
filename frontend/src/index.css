@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+.navbar-title{
+    border-radius: 4px;
+      background: linear-gradient(90deg, #f7eb0a, #7b2ff7);
+      padding: 10px;
+      width: 230px;
+      margin-left:60px;
+      cursor:pointer;
+      color:#ffffff;
+      box-shadow: inset;
+}
+.selectedOptions{
+  width: 50%;
+  margin-left: 25%;
+  height: 200px;
+  margin-top:10px;
+  box-shadow: offset;
+}
+.selectedOptions >label{
+  padding: 10px;
+  border:2px solid navy;
+  border-radius: 10px;
+  font-weight: 650;
+  cursor:pointer;
+  background-color: #ffff;
+  margin: 10px 10px 0px 10px;
+}
+
+.Displaygrps{
+  border:2px solid rgb(231, 229, 229);
+  height: 700px;;
+  max-height: 700px;
+  border-radius: 10px;
+  background-color: #ffff;
+  width:50%;
+  min-width:600px;
+  margin: 30px auto; /* center horizontally */
+  display: flex;
+  justify-content: center; /* center the buttons horizontally */
+  align-items: center;   
+}
+.display--expression{
+  margin:auto;
+}
+.explain--block{
+  width: 80%;
+  margin: auto;
+  background-color: rgb(16, 14, 44);
+}
+.textarea{
+  color:#ffff;
+}
