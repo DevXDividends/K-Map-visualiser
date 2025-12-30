@@ -1,8 +1,8 @@
-K-Map Simplifier & AI Explainer
+# K-Map Simplifier & AI Explainer
 
 An advanced digital electronics tool designed to simplify Boolean expressions using Karnaugh Maps (K-Maps) and the Quine-McCluskey algorithm. This project features a React-based interactive grid and a Python Flask backend integrated with Google Gemini AI to provide natural language explanations of the simplification process.
 
-🚀 Features
+## 🚀 Features
 
 Interactive K-Map Grid: Supports 2, 3, and 4-variable maps with real-time state toggling (0, 1, and Don't Care 'X').
 
@@ -20,9 +20,9 @@ Dual Optimization Modes:
 
 6. Modern UI: Built with React, Tailwind CSS, and Lucide icons for a premium, responsive experience.
 
-🛠️ Technical Architecture
+## 🛠️ Technical Architecture
 
-##Frontend (React)
+### Frontend (React)
 
 -> State Management: Uses React Hooks (useState, useEffect) to manage grid data and mode switching.
 
@@ -30,7 +30,7 @@ Dual Optimization Modes:
 
 -> Dynamic Styling: Tailwind CSS handles the complex positioning of group overlays and responsive design.
 
-##Backend (Flask)
+### Backend (Flask)
 
 -> Quine-McCluskey Logic:
 
@@ -44,7 +44,7 @@ Dual Optimization Modes:
 
 -> AI Integration: The /explain endpoint constructs a technical prompt containing the identified groups and expressions, sending it to gemini-2.5-flash for an expert-level breakdown.
 
-💻 Implementation Details
+## 💻 Implementation Details
 
 The K-Map Grid Mapping
 
@@ -65,7 +65,7 @@ The exact groups identified by the algorithm.
 The resulting simplified expression.
 This ensures the AI explanation is grounded in the actual mathematical results produced by the code.
 
-🚦 Getting Started
+## 🚦 Getting Started
 
 Prerequisites
 
@@ -110,7 +110,7 @@ npm start
 The frontend will run on http://localhost:3000.
 Note: Ensure the proxy or API URL in React points to the Flask server.
 
-📖 Usage Guide
+## 📖 Usage Guide
 
 Select Variable Count: Choose between a 2, 3, or 4-variable map.
 
@@ -122,7 +122,7 @@ View Results: The simplified expression and original expression update automatic
 
 Get AI Explanation: Click the "Get AI Explanation" button to receive a detailed breakdown of how the variables were eliminated to reach the final result.
 
-📝 Application Applications
+## 📝 Application Applications
 
 Education: A learning tool for students studying Digital Logic Design.
 
