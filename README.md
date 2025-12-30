@@ -122,7 +122,20 @@ View Results: The simplified expression and original expression update automatic
 
 Get AI Explanation: Click the "Get AI Explanation" button to receive a detailed breakdown of how the variables were eliminated to reach the final result.
 
-## 📝 Application Applications
+# Outputs
+<img width="1920" height="927" alt="image" src="https://github.com/user-attachments/assets/2818482b-0b2f-4494-acaf-f6499f778e4e" />
+
+## Grouping
+<img width="1913" height="921" alt="image" src="https://github.com/user-attachments/assets/4fdc24ae-1a08-462f-9d97-deba531e6963" />
+
+## Simplified Expression
+<img width="1010" height="517" alt="image" src="https://github.com/user-attachments/assets/7a1d6356-4b8d-435f-8f98-adaa8de9d9aa" />
+
+
+
+
+
+## 📝  Applications
 
 Education: A learning tool for students studying Digital Logic Design.
 
