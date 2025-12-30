@@ -85,7 +85,7 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
-pip install flask flask-cors langchain-google-genai python-dotenv
+```python pip install flask flask-cors langchain-google-genai python-dotenv
 
 # Create a .env file and add your API Key
 echo "GOOGLE_API_KEY=your_actual_key_here" > .env
