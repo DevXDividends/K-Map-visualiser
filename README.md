@@ -96,7 +96,7 @@ python app.py
 The backend will run on http://127.0.0.1:5000.
 
 2. Frontend Setup (React)
-
+```
 # Navigate to frontend directory
 cd frontend
 
@@ -105,7 +105,7 @@ npm install
 
 # Start the development server
 npm start
-
+```
 
 The frontend will run on http://localhost:3000.
 Note: Ensure the proxy or API URL in React points to the Flask server.
