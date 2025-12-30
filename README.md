@@ -8,41 +8,41 @@ Interactive K-Map Grid: Supports 2, 3, and 4-variable maps with real-time state 
 
 Dual Optimization Modes:
 
-SOP (Sum of Products): Optimizes for minterms.
+1.  SOP (Sum of Products): Optimizes for minterms.
 
-POS (Product of Sums): Optimizes for maxterms.
+2. POS (Product of Sums): Optimizes for maxterms.
 
-Visual Grouping: Automatically identifies and draws colored bounding boxes around Prime Implicants, including edge-wrapping groups.
+3. Visual Grouping: Automatically identifies and draws colored bounding boxes around Prime Implicants, including edge-wrapping groups.
 
-Quine-McCluskey Algorithm: Robust backend implementation for finding the absolute minimal Boolean expression.
+4. Quine-McCluskey Algorithm: Robust backend implementation for finding the absolute minimal Boolean expression.
 
-AI-Powered Explanations: Uses Google Gemini (via LangChain) to analyze the K-Map groups and explain variable elimination in plain English.
+5. AI-Powered Explanations: Uses Google Gemini (via LangChain) to analyze the K-Map groups and explain variable elimination in plain English.
 
-Modern UI: Built with React, Tailwind CSS, and Lucide icons for a premium, responsive experience.
+6. Modern UI: Built with React, Tailwind CSS, and Lucide icons for a premium, responsive experience.
 
 🛠️ Technical Architecture
 
-Frontend (React)
+##Frontend (React)
 
-State Management: Uses React Hooks (useState, useEffect) to manage grid data and mode switching.
+-> State Management: Uses React Hooks (useState, useEffect) to manage grid data and mode switching.
 
-K-Map Visualization: A custom-built grid that maps linear array indices to Gray Code order (00, 01, 11, 10) to reflect standard K-Map layouts.
+-> K-Map Visualization: A custom-built grid that maps linear array indices to Gray Code order (00, 01, 11, 10) to reflect standard K-Map layouts.
 
-Dynamic Styling: Tailwind CSS handles the complex positioning of group overlays and responsive design.
+-> Dynamic Styling: Tailwind CSS handles the complex positioning of group overlays and responsive design.
 
-Backend (Flask)
+##Backend (Flask)
 
-Quine-McCluskey Logic:
+-> Quine-McCluskey Logic:
 
-Groups minterms by the number of '1's.
+-> Groups minterms by the number of '1's.
 
-Iteratively combines terms to find Prime Implicants (PIs).
+-> Iteratively combines terms to find Prime Implicants (PIs).
 
-Uses a Prime Implicant Chart to identify Essential Prime Implicants (EPIs).
+-> Uses a Prime Implicant Chart to identify Essential Prime Implicants (EPIs).
 
-Solves the remaining coverage problem using a greedy set-cover approach.
+-> Solves the remaining coverage problem using a greedy set-cover approach.
 
-AI Integration: The /explain endpoint constructs a technical prompt containing the identified groups and expressions, sending it to gemini-2.5-flash for an expert-level breakdown.
+-> AI Integration: The /explain endpoint constructs a technical prompt containing the identified groups and expressions, sending it to gemini-2.5-flash for an expert-level breakdown.
 
 💻 Implementation Details
 
@@ -85,7 +85,7 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
-```python pip install flask flask-cors langchain-google-genai python-dotenv
+ pip install flask flask-cors langchain-google-genai python-dotenv
 
 # Create a .env file and add your API Key
 echo "GOOGLE_API_KEY=your_actual_key_here" > .env
