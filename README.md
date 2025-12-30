@@ -74,7 +74,7 @@ Python 3.9+
 Node.js 16+
 
 Google Gemini API Key (for the AI explanation feature)
-
+```
 1. Backend Setup (Flask)
 
 # Navigate to backend directory
@@ -92,8 +92,7 @@ echo "GOOGLE_API_KEY=your_actual_key_here" > .env
 
 # Run the server
 python app.py
-
-
+```
 The backend will run on http://127.0.0.1:5000.
 
 2. Frontend Setup (React)
