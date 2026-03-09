@@ -1,144 +1,223 @@
-# K-Map Simplifier & AI Explainer
+<div align="center">
 
-An advanced digital electronics tool designed to simplify Boolean expressions using Karnaugh Maps (K-Maps) and the Quine-McCluskey algorithm. This project features a React-based interactive grid and a Python Flask backend integrated with Google Gemini AI to provide natural language explanations of the simplification process.
+```
+██╗  ██╗      ███╗   ███╗ █████╗ ██████╗
+██║ ██╔╝      ████╗ ████║██╔══██╗██╔══██╗
+█████╔╝ ████╗ ██╔████╔██║███████║██████╔╝
+██╔═██╗ ╚═══╝ ██║╚██╔╝██║██╔══██║██╔═══╝
+██║  ██╗      ██║ ╚═╝ ██║██║  ██║██║
+╚═╝  ╚═╝      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  SIMPLIFIER
+```
 
-## 🚀 Features
+### **Boolean Logic Minimization — Powered by Quine-McCluskey + Google Gemini AI**
 
-Interactive K-Map Grid: Supports 2, 3, and 4-variable maps with real-time state toggling (0, 1, and Don't Care 'X').
+[![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org/)
+[![Gemini](https://img.shields.io/badge/Google_Gemini-4285F4?style=flat-square&logo=google&logoColor=white)](https://ai.google.dev/)
 
-Dual Optimization Modes:
+*An interactive digital electronics tool that simplifies Boolean expressions visually — and explains the math in plain English using AI.*
 
-1.  SOP (Sum of Products): Optimizes for minterms.
+</div>
 
-2. POS (Product of Sums): Optimizes for maxterms.
+---
 
-3. Visual Grouping: Automatically identifies and draws colored bounding boxes around Prime Implicants, including edge-wrapping groups.
+## 🗺️ What Is This?
 
-4. Quine-McCluskey Algorithm: Robust backend implementation for finding the absolute minimal Boolean expression.
+K-Map Simplifier combines a **classic computer science algorithm** with a **modern AI layer** to make Boolean logic minimization approachable for anyone studying digital electronics.
 
-5. AI-Powered Explanations: Uses Google Gemini (via LangChain) to analyze the K-Map groups and explain variable elimination in plain English.
+- Draw your K-Map interactively in the browser
+- Watch the **Quine-McCluskey algorithm** find the minimal expression in real time
+- Get a natural-language explanation of *why* variables were eliminated — powered by **Google Gemini 2.5 Flash**
 
-6. Modern UI: Built with React, Tailwind CSS, and Lucide icons for a premium, responsive experience.
+---
 
-## 🛠️ Technical Architecture
+## ✨ Features
 
-### Frontend (React)
+### 🔲 Interactive K-Map Grid
+- Supports **2, 3, and 4-variable** maps
+- Click any cell to cycle through **0 → 1 → X** (Don't Care) states
+- Grid follows standard **Gray Code ordering** (00, 01, 11, 10)
 
--> State Management: Uses React Hooks (useState, useEffect) to manage grid data and mode switching.
+### ⚡ Dual Optimization Modes
+| Mode | Optimizes For | Output |
+|---|---|---|
+| **SOP** — Sum of Products | Minterms (cells = 1) | `AB' + BC` style |
+| **POS** — Product of Sums | Maxterms (cells = 0) | `(A+B')(B+C)` style |
 
--> K-Map Visualization: A custom-built grid that maps linear array indices to Gray Code order (00, 01, 11, 10) to reflect standard K-Map layouts.
+### 🎨 Visual Prime Implicant Groups
+- Colored bounding boxes drawn **directly on the grid**
+- Correctly handles **edge-wrapping groups** (top↔bottom, left↔right)
+- Groups update automatically as you toggle cells
 
--> Dynamic Styling: Tailwind CSS handles the complex positioning of group overlays and responsive design.
+### 🤖 AI-Powered Explanations
+- Click **"Get AI Explanation"** for a full breakdown
+- Gemini is fed the actual groups and expression — not a generic prompt
+- Explains variable elimination step-by-step in plain English
 
-### Backend (Flask)
+### 🧮 Quine-McCluskey Backend
+A full, textbook-accurate implementation:
+1. Groups minterms by count of `1` bits
+2. Iteratively combines terms → finds all **Prime Implicants**
+3. Builds a **Prime Implicant Chart** → extracts **Essential PIs**
+4. Solves remaining coverage with a **greedy set-cover**
 
--> Quine-McCluskey Logic:
+---
 
--> Groups minterms by the number of '1's.
+## 🏗️ Architecture
 
--> Iteratively combines terms to find Prime Implicants (PIs).
+```
+┌─────────────────────────────────────────────┐
+│              Browser (React)                │
+│                                             │
+│  ┌──────────────┐     ┌───────────────────┐ │
+│  │  K-Map Grid  │────▶│  Results Panel    │ │
+│  │  (Gray Code) │     │  SOP/POS + Groups │ │
+│  └──────────────┘     └───────────────────┘ │
+│          │                      │            │
+└──────────┼──────────────────────┼────────────┘
+           │   POST /simplify     │  POST /explain
+           ▼                      ▼
+┌─────────────────────────────────────────────┐
+│              Flask Backend                  │
+│                                             │
+│  ┌────────────────────┐  ┌───────────────┐  │
+│  │  Quine-McCluskey   │  │  LangChain +  │  │
+│  │  Algorithm Engine  │  │  Gemini 2.5   │  │
+│  └────────────────────┘  └───────────────┘  │
+└─────────────────────────────────────────────┘
+```
 
--> Uses a Prime Implicant Chart to identify Essential Prime Implicants (EPIs).
+---
 
--> Solves the remaining coverage problem using a greedy set-cover approach.
+## 🖼️ Screenshots
 
--> AI Integration: The /explain endpoint constructs a technical prompt containing the identified groups and expressions, sending it to gemini-2.5-flash for an expert-level breakdown.
+### Interactive Grid & Grouping
+<img width="1920" alt="K-Map Grid with Groups" src="https://github.com/user-attachments/assets/2818482b-0b2f-4494-acaf-f6499f778e4e" />
 
-## 💻 Implementation Details
+### Prime Implicant Visualization
+<img width="1913" alt="Grouping Visualization" src="https://github.com/user-attachments/assets/4fdc24ae-1a08-462f-9d97-deba531e6963" />
 
-The K-Map Grid Mapping
+### Simplified Expression Output
+<img width="1010" alt="Simplified Expression" src="https://github.com/user-attachments/assets/7a1d6356-4b8d-435f-8f98-adaa8de9d9aa" />
 
-To ensure the visual grid matches standard textbook K-Maps, the application maps indices using Gray Code:
-
-4 Variables: Rows/Cols follow the 0, 1, 3, 2 sequence.
-
-Wrapping Logic: The backend calculates if a group spans from index 0 to 2 (horizontal wrap) or index 0 to 8 (vertical wrap) and returns multiple coordinate blocks to the frontend for rendering.
-
-AI Prompt Engineering
-
-The AI doesn't just "guess" the answer. The backend feeds it:
-
-The list of active minterms/maxterms.
-
-The exact groups identified by the algorithm.
-
-The resulting simplified expression.
-This ensures the AI explanation is grounded in the actual mathematical results produced by the code.
+---
 
 ## 🚦 Getting Started
 
-Prerequisites
+### Prerequisites
 
-Python 3.9+
+- **Python** 3.9+
+- **Node.js** 16+
+- A **Google Gemini API Key** → [Get one here](https://aistudio.google.com/app/apikey)
 
-Node.js 16+
+---
 
-Google Gemini API Key (for the AI explanation feature)
-```
-1. Backend Setup (Flask)
+### 1️⃣ Backend Setup (Flask)
 
-# Navigate to backend directory
+```bash
+# Navigate to backend
 cd backend
 
-# Create a virtual environment
+# Create & activate virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate       # Windows: venv\Scripts\activate
 
 # Install dependencies
- pip install flask flask-cors langchain-google-genai python-dotenv
+pip install flask flask-cors langchain-google-genai python-dotenv
 
-# Create a .env file and add your API Key
+# Add your Gemini API key
 echo "GOOGLE_API_KEY=your_actual_key_here" > .env
 
-# Run the server
+# Start the server
 python app.py
 ```
-The backend will run on http://127.0.0.1:5000.
 
-2. Frontend Setup (React)
-```
-# Navigate to frontend directory
+> Backend runs at → `http://127.0.0.1:5000`
+
+---
+
+### 2️⃣ Frontend Setup (React)
+
+```bash
+# Navigate to frontend
 cd frontend
 
 # Install dependencies
 npm install
 
-# Start the development server
+# Start dev server
 npm start
 ```
 
-The frontend will run on http://localhost:3000.
-Note: Ensure the proxy or API URL in React points to the Flask server.
+> Frontend runs at → `http://localhost:3000`
 
-## 📖 Usage Guide
+> ⚠️ Make sure the API URL in your React app points to `http://127.0.0.1:5000`
 
-Select Variable Count: Choose between a 2, 3, or 4-variable map.
+---
 
-Fill the Grid: Click on cells to cycle through 0, 1, and X.
+## 📖 How to Use
 
-Choose Mode: Toggle between SOP (Sum of Products) and POS (Product of Sums).
+```
+Step 1 — Select variable count      →  2, 3, or 4 variables
+Step 2 — Click cells to fill grid   →  Toggle: 0 → 1 → X (Don't Care)
+Step 3 — Choose your mode           →  SOP or POS
+Step 4 — Watch the magic            →  Groups drawn, expression simplified
+Step 5 — Understand the why         →  Click "Get AI Explanation"
+```
 
-View Results: The simplified expression and original expression update automatically. Colored boxes will appear on the grid to show which terms were grouped.
+---
 
-Get AI Explanation: Click the "Get AI Explanation" button to receive a detailed breakdown of how the variables were eliminated to reach the final result.
+## 🧠 How the AI Explanation Works
 
-# Outputs
-<img width="1920" height="927" alt="image" src="https://github.com/user-attachments/assets/2818482b-0b2f-4494-acaf-f6499f778e4e" />
+The AI isn't guessing. Before calling Gemini, the backend constructs a grounded prompt containing:
 
-## Grouping
-<img width="1913" height="921" alt="image" src="https://github.com/user-attachments/assets/4fdc24ae-1a08-462f-9d97-deba531e6963" />
+```
+✅ The list of active minterms / maxterms
+✅ The exact Prime Implicant groups found by the algorithm
+✅ The final simplified Boolean expression
+```
 
-## Simplified Expression
-<img width="1010" height="517" alt="image" src="https://github.com/user-attachments/assets/7a1d6356-4b8d-435f-8f98-adaa8de9d9aa" />
+This ensures every explanation is rooted in the **actual mathematical results** — not hallucinated reasoning.
 
+---
 
+## 🎯 Applications
 
+| Domain | Use Case |
+|---|---|
+| 🎓 **Education** | Students learning Digital Logic Design can verify and understand their K-Maps |
+| ⚙️ **Engineering** | Quick sanity-check for logic circuit minimizations |
+| 🤖 **AI Research** | Demonstrates combining deterministic algorithms with LLMs for explainability |
 
+---
 
-## 📝  Applications
+## 🗂️ Project Structure
 
-Education: A learning tool for students studying Digital Logic Design.
+```
+kmap-simplifier/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/       # KMapGrid, ResultsPanel, GroupOverlay
+│   │   └── App.jsx           # Root component, state management
+│   ├── tailwind.config.js
+│   └── package.json
+│
+└── backend/
+    ├── app.py                # Flask routes: /simplify, /explain
+    ├── quine_mccluskey.py    # Core minimization algorithm
+    ├── ai_explainer.py       # LangChain + Gemini integration
+    └── .env                  # GOOGLE_API_KEY (never commit this)
+```
 
-Engineering: Quick verification of logic circuit minimizations.
+---
 
-AI Research: Demonstration of combining traditional deterministic algorithms (Quine-McCluskey) with LLMs for educational transparency.
+<div align="center">
+
+Built with 🧮 logic and 🤖 AI by **[DevXDividends](https://github.com/DevXDividends)**
+
+*Where Boolean algebra meets natural language.*
+
+</div>
